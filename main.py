@@ -1,8 +1,11 @@
-from flask import Flask, render_template, url_for
-
-# from flask_wtf import FlaskForm, LoginForm
+from flask import Flask, render_template, url_for, redirect
+# from flask_wtf import FlaskForm
+# from wtforms import StringField, PasswordField, BooleanField, SubmitField
+# from wtforms.validators import DataRequired
+from loginform import LoginForm
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'your-very-secret-key-here'
 
 
 @app.route("/index/<title>")
@@ -38,14 +41,6 @@ def answer():
     return render_template("auto_answer.html", **data)
 
 
-# @app.route('/login', methods=['GET', 'POST'])
-# def login():
-#     form = LoginForm()
-#     if form.validate_on_submit():
-#         return redirect('/success')
-#     return render_template('login.html', title='Авторизация', form=form)
-
-
 @app.route("/distribution")
 def distribution():
     ls = ["Ридли Скотт", "Энди Уир", "Марк Уотни", "Венката Капур", "Тедди Сандерс", "Шон Бин"]
@@ -55,6 +50,14 @@ def distribution():
 @app.route("/table/<sex>/<int:age>")
 def table(sex, age):
     return render_template("table.html", sex=sex, age=age)
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        return redirect('/success')
+    return render_template('login.html', title='Авторизация', form=form)
 
 
 @app.route('/carousel')

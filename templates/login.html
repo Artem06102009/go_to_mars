@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="header mx-auto" style="display: flex;
+    flex-direction: row;">
+    <img src="static/img/MARS-2-7.png">
+    <h1>Аварийный доступ</h1>
+</div>
+<form action="" method="post" novalidate style="width: 50%;" class="mx-auto">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.id_astr.label }}<br>
+        {{ form.id_astr(class="form-control") }}<br>
+        {% for error in form.id_astr.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endfor %}
+    </p>
+    <p>
+        {{ form.psw_astr.label }}<br>
+        {{ form.psw_astr(class="form-control", type="password") }}<br>
+        {% for error in form.psw_astr.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endfor %}
+    </p>
+    <p>
+        {{ form.id_cap.label }}<br>
+        {{ form.id_cap(class="form-control") }}<br>
+        {% for error in form.id_cap.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endfor %}
+    </p>
+    <p>
+        {{ form.psw_cap.label }}<br>
+        {{ form.psw_cap(class="form-control") }}<br>
+        {% for error in form.psw_cap.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endfor %}
+    </p>
+    <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+</form>
+{% endblock %}

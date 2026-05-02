@@ -1,7 +1,4 @@
 from flask import Flask, render_template, url_for, redirect
-# from flask_wtf import FlaskForm
-# from wtforms import StringField, PasswordField, BooleanField, SubmitField
-# from wtforms.validators import DataRequired
 from loginform import LoginForm
 
 app = Flask(__name__)
